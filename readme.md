@@ -11,35 +11,38 @@ You need to run backend and frontend separately. To do that first we run backend
 Run Backend
 First we need to create virtual environment for backend
 
-pip install virtualenv
-python -m virtualenv -p python3 .env
+`pip install virtualenv`
+
+`python -m virtualenv -p python3 .env`
+
 for Window users
 
-.env/Lib/activate
+`.env/Lib/activate`
 
 for Linux users
 
-source .env/bin/activate
+`source .env/bin/activate`
 
 for MacOS users
 
-I don`t Know neutral_face
+I don`t Know 😑
 
 After creating virtual environment we need to install requirements & initialize server. To do that You need to go to the backend folder and run the following code there
-
+```
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic
 python manage.py createsuperuser
+```
 Now you need enter your Name & Email & password after that run server with python manage.py runserver
-
 Run frontend
 To run frontend head to exchange-interface folder and run commands blow
-
-npm install
-npm start
-or you can run it by yarn
+```
+npm install -g yarn
+yarn
+yarn start
+```
 
 TODO
  - [ ] Create frontend
