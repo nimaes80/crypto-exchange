@@ -1,0 +1,70 @@
+version: "3.8"
+
+
+services:
+  db:
+    container_name: "echange-database"
+    image: postgres:alpine
+    restart: always
+
+    ports:
+      - 5432:5432
+
+    expose:
+      - 5432
+
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: example
+
+    volumes:
+      - ./volume/db/lib:/var/lib/postgresql/data:rw
+      - ./volume/db/etc:/etc/postgresql/:rw
+      - ./volume/db/log:/var/log/postgresql:rw
+
+  broker:
+    container_name: "echange-message-broker"
+    image: rabbitmq:alpine
+    restart: always
+
+    ports:
+      - 5672:5672
+    
+    expose:
+      - 5672
+
+    environment:
+      RABBITMQ_DEFAULT_USER: example
+      RABBITMQ_DEFAULT_PASS: example
+      # RABBITMQ_DEFAULT_PASS_FILE: ''
+      # RABBITMQ_DEFAULT_USER_FILE: ''
+      # RABBITMQ_MANAGEMENT_SSL_CACERTFILE: ''
+      # RABBITMQ_MANAGEMENT_SSL_CERTFILE: ''
+      # RABBITMQ_MANAGEMENT_SSL_DEPTH: ''
+      # RABBITMQ_MANAGEMENT_SSL_FAIL_IF_NO_PEER_CERT: ''
+      # RABBITMQ_MANAGEMENT_SSL_KEYFILE: ''
+      # RABBITMQ_MANAGEMENT_SSL_VERIFY: ''
+      # RABBITMQ_SSL_CACERTFILE: ''
+      # RABBITMQ_SSL_CERTFILE: ''
+      # RABBITMQ_SSL_DEPTH: ''
+      # RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT: ''
+      # RABBITMQ_SSL_KEYFILE: ''
+      # RABBITMQ_SSL_VERIFY: ''
+      # RABBITMQ_VM_MEMORY_HIGH_WATERMARK: ''
+
+    volumes:
+      - ./volume/broker/etc:/etc/rabbitmq:rw
+      - ./volume/broker/lib:/var/lib/rabbitmq:rw
+
+
+  # backend:
+  #   container_name: "echange-message-broker"
+  #   image: python:alpine
+  #   restart: always
+
+  #   ports:
+  #     - "80:8000"
+
+    
+  # webserver:
